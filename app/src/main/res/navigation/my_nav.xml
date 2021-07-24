@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/bugsFragment2">
+
+    <fragment
+        android:id="@+id/bugsFragment2"
+        android:name="com.example.bugtracker.ui.list_bugs.BugsFragment"
+        android:label="Возникшие проблемы"
+        tools:layout="@layout/bugs_fragment" >
+        <action
+            android:id="@+id/action_bugsFragment_to_bugDetailsFragment"
+            app:destination="@id/bugDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/bugDetailsFragment"
+        android:name="com.example.bugtracker.ui.bug_details.BugDetailsFragment"
+        android:label="Подробная информация"
+        tools:layout="@layout/bug_details_fragment" >
+        <action
+            android:id="@+id/action_bugDetailsFragment_to_bugsFragment2"
+            app:destination="@id/bugsFragment2"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+        <argument
+            android:name="currentItem"
+            app:argType="com.example.bugtracker.data.models.Bug" />
+    </fragment>
+</navigation>
