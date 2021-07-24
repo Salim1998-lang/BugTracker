@@ -1,16 +1,13 @@
 package com.example.bugtracker.ui.list_bugs
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bugtracker.R
 import com.example.bugtracker.databinding.BugsFragmentBinding
 import com.example.bugtracker.ui.list_bugs.adapter.BugAdapter
 
