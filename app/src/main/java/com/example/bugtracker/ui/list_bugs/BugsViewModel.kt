@@ -1,27 +1,22 @@
 package com.example.bugtracker.ui.list_bugs
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bugtracker.data.models.BugTracker
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.bugtracker.data.models.Bug
+import com.example.bugtracker.data.network.BugPagingSource
 import com.example.bugtracker.repository.BugTrackerRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Response
+import kotlinx.coroutines.flow.Flow
 
-class BugsViewModel() : ViewModel() {
+class BugsViewModel : ViewModel() {
 
-    private val repository: BugTrackerRepository
+    private val repository: BugTrackerRepository = BugTrackerRepository()
 
-    init {
-        repository = BugTrackerRepository()
-    }
-    val myResponse: MutableLiveData<Response<BugTracker>> = MutableLiveData()
-
-    fun getBugs() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getBugs()
-            myResponse.postValue(response)
-        }
-    }
+    val bugs: Flow<PagingData<Bug>> = Pager(PagingConfig(pageSize = 1)) {
+        BugPagingSource(repository)
+    }.flow
+        .cachedIn(viewModelScope)
 }

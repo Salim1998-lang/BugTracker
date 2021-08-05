@@ -45,8 +45,13 @@ data class Sender(
 
 
 data class BugTracker(
-@SerializedName("bug_trackers")
-    val bugs: List<Bug>)
+    @SerializedName("bug_trackers")
+    val bugs: List<Bug>,
+    @SerializedName("currentPage")
+    val currentPage: Int,
+    @SerializedName("totalPages")
+    val totalPages: Int
+)
 
 
 

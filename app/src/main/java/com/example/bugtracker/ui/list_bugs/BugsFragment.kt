@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bugtracker.databinding.BugsFragmentBinding
 import com.example.bugtracker.ui.list_bugs.adapter.BugAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class BugsFragment : Fragment() {
 
@@ -30,13 +33,16 @@ class BugsFragment : Fragment() {
     }
 
     private fun loadBugs(recyclerView: RecyclerView) {
-        viewModel.getBugs()
-        viewModel.myResponse.observe(viewLifecycleOwner) { response ->
+        val bugAdapter = BugAdapter()
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = bugAdapter
+        }
 
-            if (response.isSuccessful) {
-                recyclerView.adapter = viewModel.myResponse.value?.body()!!.let {
-                    BugAdapter(it.bugs)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.bugs.collectLatest {
+                bugAdapter.submitData(it)
             }
         }
     }
