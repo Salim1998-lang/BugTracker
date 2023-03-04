@@ -50,7 +50,5 @@ class BugAdapter : PagingDataAdapter<Bug, BugAdapter.BugViewHolder>(BugComparato
             return oldItem == newItem
         }
     }
-
 }
-
 

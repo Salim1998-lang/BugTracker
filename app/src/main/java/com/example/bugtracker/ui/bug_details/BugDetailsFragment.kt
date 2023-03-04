@@ -1,13 +1,11 @@
 package com.example.bugtracker.ui.bug_details
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.example.bugtracker.R
 import com.example.bugtracker.databinding.BugDetailsFragmentBinding
 
 class BugDetailsFragment : Fragment() {

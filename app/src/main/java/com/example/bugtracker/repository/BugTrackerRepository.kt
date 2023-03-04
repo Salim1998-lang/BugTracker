@@ -9,5 +9,4 @@ class BugTrackerRepository {
     suspend fun getBugs(currentPage: Int): Response<BugTracker> {
         return RetrofitInstance.api.getBugs(currentPage)
     }
-
 }

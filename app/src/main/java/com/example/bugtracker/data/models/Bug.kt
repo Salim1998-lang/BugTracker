@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-
 @Parcelize
 data class Bug(
     @SerializedName("id")
@@ -43,7 +42,6 @@ data class Sender(
     val userName: String
 ):Parcelable
 
-
 data class BugTracker(
     @SerializedName("bug_trackers")
     val bugs: List<Bug>,
@@ -52,6 +50,7 @@ data class BugTracker(
     @SerializedName("totalPages")
     val totalPages: Int
 )
+
 
 
 
